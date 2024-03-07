@@ -116,6 +116,50 @@ app.post('/deleteSongs', async (req, res)=>{
   }
 });
 
+app.post('/signUp', async(req,res)=>{
+
+  try{
+  const userName = req.body.userName;
+  const email = req.body.email;
+
+  const credentials = {
+    userName,
+    email,
+  }
+
+  const cred = await users.find(credentials).toArray()
+
+  if(cred.length>0){
+    res.status(400);
+    res.send("Already Existing");
+  }
+  else{
+    const cred = await users.insertOne(credentials)
+    res.send("Sign Up Successful")
+    res.status(200);
+  }
+}
+
+catch{
+  res.send("Already Existing");
+  res.status(400);
+}      
+})
+
+app.post('/login', async(req,res)=>{
+
+  const userName = req.body.userName;
+  const email = req.body.email;
+
+  const credentials = {
+    userName,
+    email,
+  }
+
+
+
+})
+
 
 
 
