@@ -134,7 +134,6 @@ app.post("/signUp", async (req, res) => {
       res.send("Already Existing");
     } else {
       const cred = await users.insertOne(credentials);
-      res.send("Sign Up Successful");
 
       let token;
       try {
@@ -171,11 +170,11 @@ app.post("/login", async (req, res) => {
 
     const cred = await users.find(credentials).toArray();
 
-    if (cred.length > 0) {
+    if (cred.length ==  0) { //records in DB no email with same cred exiists in DB checking in DB 
       res.status(400);
-      res.send("Already Existing");
+      res.send("New User Signup First");
     } else {
-      res.send("Sign Up Successful");
+
 
       let token;
       try {
@@ -189,6 +188,7 @@ app.post("/login", async (req, res) => {
         );
         res.send({ userName, email, token });
         res.status(200);
+        
       } catch {
         res.status(400);
         res.send("Already existing");
