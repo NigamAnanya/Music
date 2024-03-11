@@ -17,6 +17,9 @@ const login = () => {
       `http://localhost:3000/login`, credentials
     )
     console.log(response)
+
+    const browser = response.data.token
+    window.localStorage.setItem('musictoken', browser)
   }
 
 
@@ -29,9 +32,12 @@ const login = () => {
     try {
       const response = await axios.post('http://localhost:3000/signUp', credentials);
       console.log(response.data);
+      const browser = response.data.token
+      window.localStorage.setItem('musictoken', browser)
     } catch (error) {
       console.error('Error logging in:', error);
     }
+    
   }
   
 
