@@ -22,14 +22,16 @@ const login = () => {
 
   const signUpUser = async()=>{
     const credentials = {
-      userName : username,
-      email : email,
+      userName: username,
+      email: email,
     };
-    const response = await axios
-      .post(
-      `http://localhost:3000/signUp`, credentials
-    )
-    console.log(response)
+
+    try {
+      const response = await axios.post('http://localhost:3000/signUp', credentials);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error logging in:', error);
+    }
   }
   
 
@@ -40,7 +42,7 @@ const login = () => {
       <input type = "email" className = "text-black" onChange={(e)=>(setEmail(e.target.value))} />
 
       <button onClick={()=>loginUser()}>Login</button>
-      <button onClick={()=>loginUser()}>SignUp</button>
+      <button onClick={()=>signUpUser()}>SignUp</button>
     </div>
   );
 }
