@@ -12,25 +12,35 @@ const login = () => {
       userName : username,
       email : email,
     };
-    axios
-    .post(
-      `https://`
+    const response = await axios
+      .post(
+      `http://localhost:3000/login`, credentials
     )
+    console.log(response)
   }
 
 
   const signUpUser = async()=>{
-
+    const credentials = {
+      userName : username,
+      email : email,
+    };
+    const response = await axios
+      .post(
+      `http://localhost:3000/signUp`, credentials
+    )
+    console.log(response)
   }
+  
 
   return (
     <div>
-      <input type = "text" onChange={(e)=>(setUsername(e.target.value))} />
+      <input type = "text" className = "text-black" onChange={(e)=>(setUsername(e.target.value))} />
 
-      <input type = "email" onChange={(e)=>(setEmail(e.target.value))} />
+      <input type = "email" className = "text-black" onChange={(e)=>(setEmail(e.target.value))} />
 
-        <button>Login</button>
-        <button>Signup</button>
+      <button onClick={()=>loginUser()}>Login</button>
+      <button onClick={()=>loginUser()}>SignUp</button>
     </div>
   );
 }
