@@ -25,7 +25,7 @@ const landing = () => {
   return (
     <div>
       <input className = "text-black" type="text" name="Search Songs" id="text" />
-      <button>Search</button>
+      <button onClick={()=>getSongs()}>Refresh</button>
     </div>
   );
 }
